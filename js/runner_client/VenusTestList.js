@@ -15,28 +15,23 @@
  *     governing permissions and limitations under the License.
  **/
 
-var VenusTestList = {
-  /**
-   * Shows the test result status ('failed', 'pending', 'passed')
-   *
-   * @param {Object} result
-   */
-  postTestResults: function(result) {
-    var PASSED = 'passed',
-      FAILED = 'failed',
-      PENDING = 'pending',
+ function postTestResults(result) {
+   var testId = result.testId,
+       passed = !result.done.failed,
+       $el = $('#test-' + testId),
+       resultClass = (passed) ? 'passed' : 'failed',
+       pendingTestCount;
 
-      testId = result.testId,
-      $el = $('#test-' + testId),
-      resultClass = (!result.done.failed) ? PASSED : FAILED;
+   $el.removeClass('pending');
+   $el.removeClass('passed');
+   $el.removeClass('failed');
+   $el.addClass(resultClass);
 
-    // reset the status of the results
-    $el.removeClass([PASSED, FAILED, PENDING].join(' '));
-    $el.addClass(resultClass);
+   pendingTestCount = $('.test.pending').length;
 
-    // hide the loading indicator if there are no pending tests
-    if (!$('.test.' + PENDING).length) {
-      $('#loading').hide();
-    }
-  }
-};
+   if (pendingTestCount === 0) {
+     $('#loading').hide();
+   }
+
+
+ }

@@ -196,7 +196,6 @@ describe('lib/testcase', function () {
 
         expect(scripts.length).to.be(1);
         expect(scripts[0].before()).to.be('before hook');
-        expect(scripts[0].transform()).to.be('transform hook');
       });
     });
   });

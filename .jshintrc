@@ -3,8 +3,7 @@
     "it": false,
     "describe": false,
     "before": false,
-    "beforeEach": false,
-    "afterEach": false
+    "beforeEach": false
   },
 
   "bitwise": true,
